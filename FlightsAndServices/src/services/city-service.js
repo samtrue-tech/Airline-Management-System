@@ -34,7 +34,7 @@ try{
 
         }
 }
-async getcity(cityId){
+async getCity(cityId){
     try{
                 
      const city= await this.cityRepository.getcity(cityId);
