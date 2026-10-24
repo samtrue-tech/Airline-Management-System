@@ -1,9 +1,9 @@
-const {city}=require('../models/index');
+const {City}=require('../models');
 
 class CityRepository{
     async createCity({name}){
         try{
-            const cityResponse=await city.create({name});
+            const cityResponse= await City.create({name});
             return cityResponse;
         }catch(error){
             
@@ -11,26 +11,28 @@ class CityRepository{
         }}   
      async deleteCity({cityId}){
         try{
-            await city.destroy({
+            const deleted=await City.destroy({
                 where:{ id:cityId}
             });
-            return true;
+            return deleted;
         }catch(error){
+            console.log("something went wrong at repository layer");
             throw {error};
+
         }}
      async updateCity({data,cityId}){
         try{
-            await city.update(data,{
+            await City.update(data,{
                 where:{
                 id:cityId
             }});
-            return city;
+            return City;
         }catch(error){
             throw {error};
         }}
     async getcity({cityId}){
         try{
-            const city=await city.findbyPk(cityId);
+            const city=await City.findByPk(cityId);
             return city;
         }catch(error){
             throw {error};;

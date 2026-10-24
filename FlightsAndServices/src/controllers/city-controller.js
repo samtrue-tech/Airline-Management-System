@@ -16,7 +16,7 @@ const create= async(req,res)=>{
 
     }catch(error){
         console.log(error);
-        return res.status(500).json({
+        return res.status(500).json({//status lene ka tareekaa baad me sahi karenge
             data:{},
             success:false,
             message:"not able to create a city",
@@ -25,8 +25,8 @@ const create= async(req,res)=>{
     }
 }
 const destroy= async(req,res)=>{
-    try{
-        const response=await cityservice.deleteCity(req.body);
+    try{//delete -> /city/:id
+        const response=await cityservice.deleteCity( {cityId: Number(req.params.id)});//bina is format me likhe api nhi chl rhi
         return res.status(200).json({
             data:response,
             success:true,
@@ -46,7 +46,7 @@ const destroy= async(req,res)=>{
 }
 const update= async(req,res)=>{
     try{
-        const city=await cityservice.updateCity();
+        const city=await cityservice.updateCity(req.params.id,req.body);
         return res.status(200).json({
             data:city,
             success:true,
@@ -60,14 +60,15 @@ const update= async(req,res)=>{
             success:false,
             message:"not able to update the given city",
             err:error,
+            
         })
 
     }
 
 }
-const get= async(req,res)=>{
+const get= async(req,res)=>{//get - /city/:id  id is in parama
     try{
-        const city = await cityservice.getCity(req.body);
+        const city = await cityservice.getCity(req.params.id);
         return res.status(200).json({
             data:city,
             success:true,
