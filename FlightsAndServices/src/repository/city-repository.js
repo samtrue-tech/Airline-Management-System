@@ -20,7 +20,7 @@ class CityRepository{
             throw {error};
 
         }}
-     async updateCity({data,cityId}){
+     async updateCity(cityId,data){
         try{
             await City.update(data,{
                 where:{
@@ -28,9 +28,9 @@ class CityRepository{
             }});
             return City;
         }catch(error){
-            throw {error};
+            throw error;
         }}
-    async getcity({cityId}){
+    async getcity(cityId){
         try{
             const city=await City.findByPk(cityId);
             return city;

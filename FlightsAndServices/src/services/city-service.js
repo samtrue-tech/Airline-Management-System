@@ -26,7 +26,8 @@ async deleteCity({cityId}){
 }
 async updateCity(cityId,data){
 try{
-            const city= await this.cityRepository.updateCity(data,cityId);
+            const city= await this.cityRepository.updateCity(cityId,data);
+            return city;
         }catch(error){
             console.log("something went wrong at service layer");
             throw{error};
