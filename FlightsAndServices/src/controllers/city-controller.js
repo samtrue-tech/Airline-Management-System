@@ -88,7 +88,8 @@ const get= async(req,res)=>{//get - /city/:id  id is in parama
 }
 const getAllCities= async(req,res)=>{
      try{
-        const cities = await cityservice.getAllCities();
+
+        const cities = await cityservice.getAllCities(req.query);
         return res.status(200).json({
             data:cities,
             success:true,
