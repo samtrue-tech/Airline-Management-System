@@ -86,9 +86,37 @@ const get= async(req,res)=>{//get - /city/:id  id is in parama
     }
 
 }
+const getAllCities= async(req,res)=>{
+     try{
+        const cities = await cityservice.getAllCities();
+        return res.status(200).json({
+            data:cities,
+            success:true,
+            message:"successfully fetched all the cities",
+            err:{},
+        });
+    }catch(error){
+        console.log(error);
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message:"not able to get the cities",
+            err:error
+        })
+    }
+
+
+
+
+}
+
+
+
+
 module.exports={
     create,
     destroy,
     get,
-    update
+    update,
+    getAllCities
 }
